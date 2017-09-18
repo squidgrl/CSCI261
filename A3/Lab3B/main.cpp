@@ -1,9 +1,9 @@
 /* CSCI 261: Fix Loop Errors
  *
- * Author: XXXX (_INSERT_YOUR_NAME_HERE_)
+ * Author: Krista Dunlap
  *
- *    This program illustrates a variety of common loop errors.
- *    Fix the errors in each section.
+ * This program illustrates a variety of common loop errors.
+ * Fix the errors in each section.
 
 Copyright 2017 Dr. Jeffrey Paone
 
@@ -33,37 +33,38 @@ OTHER DEALINGS IN THE SOFTWARE.
 #include <iostream>
 using namespace std;
 
+
 int main() {
     cout << "Welcome to Loop World" << endl;
 
 // SECTION I: update comment below on how you fixed this section's code, and tests run
 // that show loop is working properly
-// FIX =
-// TESTS:
+// FIX = initialzed sum to 0
+// TESTS: Ran program to see if it output 15 as the sum
 
     cout << endl;
     cout << "******************" << endl;
     cout << "Section I" << endl;
     cout << "******************" << endl;
 
-    short sum;  // Accumulates the total
+    short sum = 0;  // Accumulates the total
     short i;    // Used as loop control variable
-    for (i = 1; i < 5; ++i) {
+    for (i = 1; i <= 5; ++i) {
          sum += i;
      }
     cout << "The sum of the numbers from 1 to 5 (inclusive) is: " << sum << endl;
 
 // SECTION II: update comment below on how you fixed this section's code, and tests run
 // that show loop is working properly
-// FIX =
-// TESTS:
+// FIX = Initialized total to zero outside while loop.
+// TESTS: num_Items = 0, num_Items = 2 price = 12 price = 8
 
     cout << endl;
 	cout << "******************" << endl;
 	cout << "Section II" << endl;
 	cout << "******************" << endl;
 
-    double total;     // Accumulates total
+    double total = 0;     // Accumulates total
     double price;    // Gets next price from user
     short num_items;     // Number of items
     short counter = 1;  // Loop control counter
@@ -73,7 +74,6 @@ int main() {
     cout << endl;
 
     while (counter <= num_items) {
-        total = 0;
         cout << "Enter the price of item " << counter << ": ";
         cin >> price;
         cout << endl;
@@ -84,8 +84,8 @@ int main() {
 
 // SECTION III: update comment below on how you fixed this section's code, and tests run
 // that show loop is working properly
-// FIX =
-// TESTS:
+// FIX = Incremented counter in do while loop, changed do while loop condition to counter <= 4
+// TESTS: Ran program to see if sum so far and sum at the end were correct
 
     cout << endl;
 	cout << "******************" << endl;
@@ -101,7 +101,8 @@ int main() {
     do {
         sum += counter;
         cout << "Sum so far: " << sum << endl;
-    } while (counter <= sum);
+        ++counter;
+    } while (counter <= 4);
 
     cout << endl << "Section III Recap" << endl;
 
@@ -110,8 +111,8 @@ int main() {
 
 // SECTION IV: update comment below on how you fixed this section's code, and tests run
 // that show loop is working properly
-// FIX =
-// TESTS:
+// FIX = Changed increment to decrement
+// TESTS: Ran to see if output was 30
 
     cout << endl;
 	cout << "******************" << endl;
@@ -122,7 +123,7 @@ int main() {
     cout << "the sum of squares from 1 to 4 (inclusive)" << endl;
 
     sum = 0;
-    for (i=4; i>0; i++) {
+    for (i=4; i>0; i--) {
         sum += i*i;
     }
 
@@ -130,8 +131,8 @@ int main() {
 
 // SECTION V: update comment below on how you fixed this section's code, and tests run
 // that show loop is working properly
-// FIX =
-// TESTS:
+// FIX = Changed condition to counter <= 4, put counter increment inside while loop
+// TESTS: Ran to see if output was 100
 
     cout << endl;
 	cout << "******************" << endl;
@@ -144,11 +145,11 @@ int main() {
     sum = 0;
     counter = 1;
 
-    while (counter < 10) {
+    while (counter <= 4) {
         sum += (counter * counter * counter);
+        counter++;
     }
 
-    counter++;
 
     cout << "The sum of cubes from 1 to 4 is: " << sum << endl;
 
@@ -160,4 +161,5 @@ int main() {
 	cout << endl << "Congrats!  You fixed them all (hopefully correctly!)" << endl << endl << "Goodbye" << endl << endl;
 
     return 0;
+
 }
