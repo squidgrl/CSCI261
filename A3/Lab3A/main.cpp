@@ -31,22 +31,14 @@ int main() {
 		cin >> userChoice;
 		
 		//Outputting userChoice
-		if (userChoice == 'R') {
+		if (userChoice == 'R' || userChoice == 'r') {
 			cout << endl << "Player has chosen Rock." << endl;
 		}
-		else if (userChoice == 'r') {
-			cout << endl << "Player has chosen Rock." << endl;
-		}
-		else if (userChoice == 'P') {
+		else if (userChoice == 'P' || userChoice == 'p') {
 			cout << endl << "Player has chosen Paper." << endl;
 		}
-		else if (userChoice == 'p') {
-			cout << endl << "Player has chosen Paper." << endl;
-		}
-		else if (userChoice == 'S') {
-			cout << endl << "Player has chosen Scissors." << endl;
-		}
-		else if (userChoice == 's') {
+
+		else if (userChoice == 'S'|| userChoice == 's') {
 			cout << endl << "Player has chosen Scissors." << endl;
 		}
 		else {
@@ -84,6 +76,7 @@ int main() {
 		}
 		
 		//Using if/else statements to print the winner & Add to gamesWon, gamesLost & gamesTied
+		//Incrementing gamesWon/gamesLost/gamesTied based on outcome
 		if (userChoice == 'R' || userChoice == 'r') {
 			if (computerChoiceChar == 'R') {
 				cout << "Rock and Rock is a tie!" << endl;
@@ -127,6 +120,7 @@ int main() {
 			}
 		}
 
+		//Asking user if they would like to keep playing & stores answer into keepPlaying
 		cout << "Would you like to play again? (Y/N)" << endl;
 		cin >> keepPlaying;
 	}
