@@ -33,6 +33,7 @@
 
 # Main
 main
+main-debug
 
-# Sublime meta files
+# Sublime Files
 *.sublime-*
