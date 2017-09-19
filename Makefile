@@ -7,10 +7,10 @@ OBJECTS = $(SOURCE_FILES:.cpp=.o)
 TARGET = a.out
 
 CXX    = g++
-CFLAGS = -Wall -g -O3 -std=c++11
+CFLAGS = -Wall -g -O3 -std=c++11 -Werror
 
-INCPATH += -I/usr/include
-LIBPATH += -L/usr/lib
+INCPATH += -I$(HOME)/lib/sfml/include
+LIBPATH += -L$(HOME)/lib/sfml/lib
 LIBS += -lsfml-graphics -lsfml-window -lsfml-system
 
 # If the first argument is "debug"...

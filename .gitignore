@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Main
+main
+
+# Sublime meta files
+*.sublime-*
