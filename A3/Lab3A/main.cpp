@@ -1,4 +1,4 @@
-/* CSCI 261 Lab 2D: RPS: Multigame
+/* CSCI 261 Lab 3A: RPS: Multigame
  *
  * Author: Krista Dunlap
  *
