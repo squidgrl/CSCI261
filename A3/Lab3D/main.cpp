@@ -10,7 +10,7 @@
 using namespace std;
 
 //isFours function (sees if die has one or more fours)
-bool isFours ( int die1, int die2, int die3, int die4. int die5 ) {
+bool isFours ( int die1, int die2, int die3, int die4, int die5 ) {
 
 	//Sees if any die has a value of 4 & returns true if one does
 	if( (die1 == 4) || (die2 == 4) || (die3 == 4) || (die4 == 4) || (die5 == 4) ) {
@@ -31,18 +31,18 @@ int scoreFours ( int die1, int die2, int die3, int die4. int die5 ) {
 
 	//Using if statements to add to score based on how many fours player has
 	if ( die1 == 4) {
-		++score;
+		score += 4;
 	}
 	if ( die2 == 4) {
-		++score;
+		score += 4;
 	}
 	if ( die3 == 4) {
-		++score;
+		score += 4;
 	}
 	if ( die4 == 4) {
-		++score;
+		score += 4;
 	}
 	if ( die5 == 4) {
-		++score;
+		score += 4;
 	}
 }
