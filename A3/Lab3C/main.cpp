@@ -1,4 +1,4 @@
-/* CSCI 261 Lab 2D: Multiplication Tables
+/* CSCI 261 Lab 3C: Multiplication Tables
  *
  * Author: Krista Dunlap
  *
