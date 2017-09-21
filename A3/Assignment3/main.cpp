@@ -39,14 +39,32 @@ int main() {
 		cout << "Please pick a number between 0 and 100: "
 		cin >> userNum;
 
-		//Using if else statements to see if user has guessed correctly & how close guess was
+		//Using if else statement to see if user has guessed correctly
 		if (userNum == compNum) {
 			cout << "That is correct! You guessed the number in " << numTries << " tries." << endl;
 			continue;
 		}
+
+		//Using if else statement to see if number was too low & outputting it
 		else if ( userNum < compNum) {
-			cout << "Too low!";
+			cout << "Too low. ";
 			
+			//Using if else statements to see if number is close or far & outputting it
+			if ( ( userNum > (compNum - TOO_CLOSE_DIFFERENCE) ) && ( userNum < (compNum + TOO_CLOSE_DIFFERENCE) ) ) {
+				cout << "You're so close!" << endl;
+			}
+			else if ( ( userNum < (compNum - TOO_HIGH_DIFFERENCE) ) || ( userNum > (compNum + TOO_HIGH_DIFFERENCE) ) ) {
+				cout << "You're way off!" << endl;
+			}
+			else {
+				cout << endl;
+				continue;
+			}
+		}
+
+		//Using if else statement to see if number is too high & outputting it
+		else {
+			cout << "Too high. ";
 		}
 	}
 
