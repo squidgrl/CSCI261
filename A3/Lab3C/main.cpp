@@ -23,11 +23,22 @@ int main() {
 		cin >> userNum;
 	}
 
+	//Print beginning space
+	cout << right << setw(5) << " ";
+
 	//Printing Top Row
 	for (int i = 1; i <= userNum; ++i) {
 		cout << right << setw(5) << i;
 	}
+	cout << endl;
+
+	for (int i = 1; i <= userNum; ++i) {
+		cout << right << setw(5) << i;
+		for (int j = 1; j <= userNum; ++j) {
+			cout << right << setw(5) << i*j;
+		}
 		cout << endl;
+	}
 
 	return 0;
   }
