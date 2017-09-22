@@ -50,10 +50,10 @@ int main() {
 			cout << "Too low. ";
 			
 			//Using if else statements to see if number is close or far & outputting it
-			if ( ( userNum > (compNum - TOO_CLOSE_DIFFERENCE) ) && ( userNum < (compNum + TOO_CLOSE_DIFFERENCE) ) ) {
+			if ( userNum >= (compNum - TOO_CLOSE_DIFFERENCE) ) {
 				cout << "You're so close!" << endl;
 			}
-			else if ( ( userNum < (compNum - TOO_HIGH_DIFFERENCE) ) || ( userNum > (compNum + TOO_HIGH_DIFFERENCE) ) ) {
+			else if ( userNum <= (compNum - TOO_HIGH_DIFFERENCE) ) {
 				cout << "You're way off!" << endl;
 			}
 			else {
@@ -65,6 +65,18 @@ int main() {
 		//Using if else statement to see if number is too high & outputting it
 		else {
 			cout << "Too high. ";
+
+			//Using if else statements to see if number is close or far & outputting it
+			if ( userNum <= (compNum + TOO_CLOSE_DIFFERENCE) ) {
+				cout << "You're so close!" << endl;
+			}
+			else if ( userNum <= (compNum + TOO_HIGH_DIFFERENCE) ) {
+				cout << "You're way off!" << endl;
+			}
+			else {
+				cout << endl;
+				continue;
+			}
 		}
 	}
 
