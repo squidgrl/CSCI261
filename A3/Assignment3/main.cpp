@@ -36,8 +36,14 @@ int main() {
 		++numTries;
 
 		//Asking user to enter a number between 0 and 100 & inputting number into userNum
-		cout << "Please pick a number between 0 and 100: "
+		cout << "Please pick a number between 0 and 100: ";
 		cin >> userNum;
+
+		//Seeing if number is between 0 and 100 & retrying if ...............
+		if ( (userNum < 0) || (userNum > 100) ) {
+			cout << "Please only pick a number between 0 and 100. Try again." << endl;
+			continue;
+		}
 
 		//Using if else statement to see if user has guessed correctly
 		if (userNum == compNum) {
@@ -47,14 +53,14 @@ int main() {
 
 		//Using if else statement to see if number was too low & outputting it
 		else if ( userNum < compNum) {
-			cout << "Too low. ";
+			cout << "Too low! ";
 			
 			//Using if else statements to see if number is close or far & outputting it
 			if ( userNum >= (compNum - TOO_CLOSE_DIFFERENCE) ) {
-				cout << "You're so close!" << endl;
+				cout << "Oooh you're so close!" << endl;
 			}
 			else if ( userNum <= (compNum - TOO_HIGH_DIFFERENCE) ) {
-				cout << "You're way off!" << endl;
+				cout << "Not even close!" << endl;
 			}
 			else {
 				cout << endl;
@@ -64,14 +70,14 @@ int main() {
 
 		//Using if else statement to see if number is too high & outputting it
 		else {
-			cout << "Too high. ";
+			cout << "Too high! ";
 
 			//Using if else statements to see if number is close or far & outputting it
 			if ( userNum <= (compNum + TOO_CLOSE_DIFFERENCE) ) {
-				cout << "You're so close!" << endl;
+				cout << "Oooh you're so close!" << endl;
 			}
-			else if ( userNum <= (compNum + TOO_HIGH_DIFFERENCE) ) {
-				cout << "You're way off!" << endl;
+			else if ( userNum >= (compNum + TOO_HIGH_DIFFERENCE) ) {
+				cout << "YNot even close!" << endl;
 			}
 			else {
 				cout << endl;
