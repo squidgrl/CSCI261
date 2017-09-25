@@ -24,7 +24,8 @@ int main() {
 	const int TOO_HIGH_DIFFERENCE = 25;
 
 	//Picking random number for user to guess
-	compNum = rand() % 101;
+	//compNum = rand() % 101;
+	compNum = 50;
 
 	//Introducing game
 	cout << "Welcome to a game of guess the number!" << endl;
@@ -39,8 +40,8 @@ int main() {
 		cout << "Please pick a number between 0 and 100: ";
 		cin >> userNum;
 
-		//Seeing if number is between 0 and 100 & retrying if ...............
-		if ( (userNum < 0) || (userNum > 100) ) {
+		//Seeing if number is between 0 and 100 & retrying if not
+		if ( (userNum < LOW) || (userNum > HIGH) ) {
 			cout << "Please only pick a number between 0 and 100. Try again." << endl;
 			continue;
 		}
@@ -77,7 +78,7 @@ int main() {
 				cout << "Oooh you're so close!" << endl;
 			}
 			else if ( userNum >= (compNum + TOO_HIGH_DIFFERENCE) ) {
-				cout << "YNot even close!" << endl;
+				cout << "Not even close!" << endl;
 			}
 			else {
 				cout << endl;
