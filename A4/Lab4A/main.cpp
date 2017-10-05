@@ -11,14 +11,15 @@ using namespace std;
 
 int main() {
 
-	//Declaring array
-	int userArray[15];
+	//Declaring array size and array
+	const int ARRAY_SIZE = 15;
+	int userArray[ARRAY_SIZE];
 
 	//Prompting user for input
 	cout << "Please enter 15 whole numbers." << endl;
 
 	//Using a loop to input numbers into the array
-	for(int i = 0; i < 15; ++i) {
+	for(int i = 0; i < ARRAY_SIZE; ++i) {
 
 		cout << "Number " << (i+1) << ": ";
 
@@ -31,7 +32,7 @@ int main() {
 	cout << "The numbers are: ";
 
 	//Using a loop to output the numbers
-	for(int i = 0; i < 15; ++i) {
+	for(int i = 0; i < ARRAY_SIZE; ++i) {
 
 		cout << userArray[i] << " ";
 
