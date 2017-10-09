@@ -2,7 +2,7 @@
  *
  * Author: Krista Dunlap
  *
- * Allowing user to input an array & finding the max of it
+ * Lab4A plus finding the max of the array
  */
 
 //Inlcluding libraries needed
@@ -10,7 +10,7 @@
 using namespace std;
 
 //Function to find the max in an array
-int arrayMax(int userArray[], int arraySize) {
+int findArrayMax(int userArray[], int arraySize) {
 
 	int arrayMax = userArray[0];
 
@@ -28,11 +28,33 @@ int arrayMax(int userArray[], int arraySize) {
 
 }
 
+//Function to find the min in an array
+int findArrayMin(int userArray[], int arraySize) {
+
+	int arrayMin = userArray[0];
+
+	for(int i = 0; i < arraySize; ++i) {
+
+		if(userArray[i] < arrayMin) {
+
+			arrayMin = userArray[i];
+
+		}
+
+	}
+
+	return arrayMin;
+
+}
+
+
 int main() {
 
-	//Declaring array size and array
+	//Declaring/intializing array, array size & array max/min
 	const int ARRAY_SIZE = 15;
 	int userArray[ARRAY_SIZE];
+	int arrayMax = 0;
+	int arrayMin = 0;
 
 	//Prompting user for input
 	cout << "Please enter 15 whole numbers." << endl;
@@ -57,8 +79,17 @@ int main() {
 
 	}
 
-	//Calling arrayMax function
+	//Calling findArrayMax function/storing result in variable
+	arrayMax = findArrayMax(userArray, ARRAY_SIZE);
 
+	//Printing array max
+	cout << endl << "The largest number is: " << arrayMax << "." << endl;
+
+	//Calling findArrayMax function/storing result in variable
+	arrayMax = findArrayMin(userArray, ARRAY_SIZE);
+
+	//Printing array max
+	cout << endl << "The smallest number is: " << arrayMax << "." << endl;
 
 	//Ending sentence
 	cout << endl << "Have a nice day!" << endl;
