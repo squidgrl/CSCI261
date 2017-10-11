@@ -28,7 +28,7 @@ int main() {
 	//Intializing previous guesses with a loop
 	for(int i = 0; i < (12+SIZE); ++i) {
 
-		previousGuesses[i] == ' ';
+		previousGuesses[i] = ' ';
 	
 	}
 
