@@ -119,7 +119,14 @@ string lastName(string s)  {
 
 // Returns a string substituting character target with character replacement
 string substitute(string s, char target, char replacement)  {
-    return ""; // HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEY
+    string replace;
+    replace += replacement;
+    for(int i = 0; i < (s.length()); ++i) {
+        if(s.at(i) == target) {
+            s.replace(i, 1, replace);
+        }
+    }
+    return s;
 }
 
 // Test suite. You should read, but not modify, this function.
