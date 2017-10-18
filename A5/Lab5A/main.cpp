@@ -1,6 +1,6 @@
 /* CSCI261 Lab: stringTest
  *
- * Author: YOUR NAME
+ * Author: Krista Dunlap
  *
  * This program executes some tests that illustrate the properties
  * and behaviors of strings.
