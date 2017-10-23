@@ -52,17 +52,17 @@ void shuffleDeck(vector<Card>& deck) {
 	i = rand() % 52;
 	j = rand() % 52;
 
-	placeHolder = deck[i];
+	placeHolder = deck.at(i);
 
-	deck[i] = deck[j];
-	deck[j] = placeHolder;
+	deck.at(i) = deck.at(j);
+	deck.at(j) = placeHolder;
 
 	return;
 }
 
 Card dealNextCard(vector<Card>& deck) {
 
-	Card cardToDeal = deck[(deck.size() - 1)];
+	Card cardToDeal = deck.at((deck.size() - 1));
 
 	deck.pop_back();
 
@@ -77,6 +77,12 @@ void addPoints(Card currentCard, int& total) {
 		total += 10;
 	}
 
+	else if (currentCard.rank == 1){
+		
+		total += 11;
+
+	}
+
 	else {
 
 		total += currentCard.rank;
@@ -84,4 +90,36 @@ void addPoints(Card currentCard, int& total) {
 	}
 
 	return;
+}
+
+void changePoints(int& total) {
+
+	total -= 10;
+
+	return;
+
+}
+
+void checkInstantBlackJack(vector<Card> currentHand, int& total) {
+
+	if(currentHand.at(0).rank == 1) {
+
+		if(currentHand.at(1).rank == 10 || currentHand.at(1).rank == 11 || currentHand.at(1).rank == 12 || currentHand.at(1).rank == 13) {
+
+			total = 21;
+
+		}
+
+	}
+
+	if(currentHand.at(1).rank == 1) {
+
+		if(currentHand.at(0).rank == 10 || currentHand.at(0).rank == 11 || currentHand.at(0).rank == 12 || currentHand.at(0).rank == 13) {
+
+			total = 21;
+
+		}
+
+	}
+
 }
