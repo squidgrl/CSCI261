@@ -10,7 +10,7 @@ using namespace std;
 
 void printCard(Card card) {
 
-	if(card.rank == 1) {
+	if(card.rank == 1 || card.rank == 0) {
 
 		cout << "Ace of " << card.suit;
 

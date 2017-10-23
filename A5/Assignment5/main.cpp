@@ -155,6 +155,8 @@ int main() {
 					if(currentPlayerHand.at(i).rank == 1) {
 
 						changePoints(playerTotal);
+						
+						currentPlayerHand.at(i).rank = 0;
 
 					}
 
