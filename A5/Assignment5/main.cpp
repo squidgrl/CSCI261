@@ -20,6 +20,8 @@ int main() {
 
 	//Declaring/initialzing deck of cards, dealer/player cards, dealer/player total, hitOrStand & continueToPlay
 	vector<Card> deck;
+	vector<Card> currentPlayerHand;
+	vector<Card> currentDealerHand;
 	Card currentDealerCard;
 	Card currentPlayerCard;
 	int dealerTotal;
@@ -46,7 +48,7 @@ int main() {
 
 		cout << "Card Number " << (i+1) << ": ";
 
-		printCard(deck[i]);
+		printCard(deck.at(i));
 
 	}*/
 
@@ -62,7 +64,7 @@ int main() {
 
 		cout << "Card Number " << (i+1) << ": ";
 
-		printCard(deck[i]);
+		printCard(deck.at(i));
 
 	}*/
 
@@ -79,6 +81,12 @@ int main() {
 
 	//Loop to allow player to keep playing
 	while(continueToPlay == "Yes" || continueToPlay == "yes") {
+
+		//Resetting dealer/player totals & hands before each game
+		dealerTotal = 0;
+		playerTotal = 0;
+		currentPlayerHand.clear();
+		currentDealerHand.clear();
 
 		//Repopulating/reshuffling deck if it gets too low (<20)
 		if(deck.size() < 20) {
@@ -105,16 +113,13 @@ int main() {
 
 		}
 
-		//Initializing dealer/player totals before each game
-		dealerTotal = 0;
-		playerTotal = 0;
-
 		//Dealing card to dealer & adding points to total
 		currentDealerCard = dealNextCard(deck);
 		cout << "The Dealer shows the ";
 		printCard(currentDealerCard);
 		cout << endl;
 		addPoints(currentDealerCard, dealerTotal);
+		currentDealerHand.push_back(currentDealerCard);
 		cout << "The Dealer total is " << dealerTotal << endl << endl;
 
 		//Dealing card to player & adding points to total
@@ -123,6 +128,7 @@ int main() {
 		printCard(currentPlayerCard);
 		cout << endl;
 		addPoints(currentPlayerCard, playerTotal);
+		currentPlayerHand.push_back(currentPlayerCard);
 
 		//Using a while loop to keep playing while players points are below 21
 		while(playerTotal < 21) {
@@ -133,9 +139,36 @@ int main() {
 			printCard(currentPlayerCard);
 			cout << endl;
 			addPoints(currentPlayerCard, playerTotal);
-			cout << "Your total is " << playerTotal << endl << endl;
+			currentPlayerHand.push_back(currentPlayerCard);
+
+			if(currentPlayerHand.size() == 2) {
+
+				checkInstantBlackJack(currentPlayerHand, playerTotal);
+
+			}
 
 			//Breaking loop if player busts & printing it
+			if(playerTotal > 21){
+
+				for(int i = 0; i < currentPlayerHand.size(); ++i) {
+
+					if(currentPlayerHand.at(i).rank == 1) {
+
+						changePoints(playerTotal);
+
+					}
+
+					if(playerTotal < 21) {
+
+						i = currentPlayerHand.size();
+
+					}
+
+				}
+			}
+
+			cout << "Your total is " << playerTotal << endl << endl;
+
 			if(playerTotal > 21){
 
 				cout << "Player busts! Dealer wins." << endl;
@@ -182,7 +215,15 @@ int main() {
 			printCard(currentDealerCard);
 			cout << endl;
 			addPoints(currentDealerCard, dealerTotal);
+			currentDealerHand.push_back(currentDealerCard);
 			cout << "The Dealer total is " << dealerTotal << endl << endl;
+
+
+			if(currentDealerHand.size() == 2) {
+
+				checkInstantBlackJack(currentDealerHand, dealerTotal);
+
+			}
 
 		}
 
@@ -193,17 +234,29 @@ int main() {
 
 		}
 
+		else if(dealerTotal == 21 && playerTotal < 21) {
+
+			cout << "Dealer wins!" << endl;
+
+		}
+
 		//Printing that player wins (if conditions met)
-		else if(playerTotal > dealerTotal && playerTotal < 21 && dealerTotal <= 21) {
+		else if(playerTotal > dealerTotal && playerTotal < 21 && dealerTotal < 21) {
 
 			cout << "Player wins!" << endl;
 
 		}
 
 		//Printing that dealer wins (if conditions met)
-		else if(dealerTotal > playerTotal && playerTotal < 21 && dealerTotal <= 21) {
+		else if(dealerTotal > playerTotal && playerTotal < 21 && dealerTotal < 21) {
 
 			cout << "Dealer wins!" << endl;
+
+		}
+
+		else if(dealerTotal == playerTotal && playerTotal < 21 && dealerTotal < 21){
+
+			cout << "It's a tie!" << endl;
 
 		}
 
