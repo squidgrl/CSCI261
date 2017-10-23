@@ -122,4 +122,6 @@ void checkInstantBlackJack(vector<Card> currentHand, int& total) {
 
 	}
 
+	return;
+
 }
