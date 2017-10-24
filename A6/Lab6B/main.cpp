@@ -2,7 +2,7 @@
  *
  * Author: Krista Dunlap
  *
- * FILLLLLLLLLLLLLLLLLLLl
+ * Deciphering a message from the cows
  */
 
 #include <iostream>
@@ -34,17 +34,17 @@ int main() {
 
 	while(!fromFile.eof()) {
 
-		fromFile >> currentChar;
+		currentChar = fromFile.get();
 
 		if(currentChar == '\n') {
 
 			inputChar = '\n';
 
-			toFile << ;
+			toFile << inputChar;
 
 		}
 
-		if(currentChar == '~') {
+		else if(currentChar == '~') {
 
 			inputChar = ' ';
 
