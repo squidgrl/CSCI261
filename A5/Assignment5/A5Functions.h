@@ -18,7 +18,7 @@ Card dealNextCard(vector<Card>& deck);
 
 void addPoints(Card currentCard, int& total);
 
-void changePoints(int& total);
+void changeAcePoints(int& total);
 
 void checkInstantBlackJack(vector<Card> currentHand, int& total);
 

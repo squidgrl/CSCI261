@@ -8,6 +8,7 @@
 #include "CardStruct.h"
 using namespace std;
 
+//Function to print card
 void printCard(Card card) {
 
 	if(card.rank == 1 || card.rank == 0) {
@@ -43,6 +44,7 @@ void printCard(Card card) {
 	return;
 }
 
+//Function to shuffle deck
 void shuffleDeck(vector<Card>& deck) {
 
 	int i;
@@ -60,6 +62,7 @@ void shuffleDeck(vector<Card>& deck) {
 	return;
 }
 
+//Function to deal card from top(end) of deck
 Card dealNextCard(vector<Card>& deck) {
 
 	Card cardToDeal = deck.at((deck.size() - 1));
@@ -70,6 +73,7 @@ Card dealNextCard(vector<Card>& deck) {
 
 }
 
+//Adds points to total based on card dealt
 void addPoints(Card currentCard, int& total) {
 
 	if(currentCard.rank == 11 || currentCard.rank == 12 || currentCard.rank == 13) {
@@ -92,7 +96,8 @@ void addPoints(Card currentCard, int& total) {
 	return;
 }
 
-void changePoints(int& total) {
+//Function to change points of Ace from 11 to 1
+void changeAcePoints(int& total) {
 
 	total -= 10;
 
@@ -100,6 +105,7 @@ void changePoints(int& total) {
 
 }
 
+//Function to check for an instant blackjack
 void checkInstantBlackJack(vector<Card> currentHand, int& total) {
 
 	if(currentHand.at(0).rank == 1) {

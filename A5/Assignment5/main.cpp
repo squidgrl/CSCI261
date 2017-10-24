@@ -141,22 +141,25 @@ int main() {
 			addPoints(currentPlayerCard, playerTotal);
 			currentPlayerHand.push_back(currentPlayerCard);
 
+			//While player only has two cards, checks if theres an instant blackjack (an ace and a face card)
 			if(currentPlayerHand.size() == 2) {
 
 				checkInstantBlackJack(currentPlayerHand, playerTotal);
 
 			}
 
-			//Breaking loop if player busts & printing it
-			if(playerTotal > 21){
+			//Checks if an ace can be counted as a 1 instead of an 11
+			if(playerTotal > 21) {
 
 				for(int i = 0; i < currentPlayerHand.size(); ++i) {
 
 					if(currentPlayerHand.at(i).rank == 1) {
 
-						changePoints(playerTotal);
+						changeAcePoints(playerTotal);
 						
 						currentPlayerHand.at(i).rank = 0;
+
+						cout << "Your Ace was changed from 11 points to 1 point." << endl;
 
 					}
 
@@ -169,9 +172,11 @@ int main() {
 				}
 			}
 
+			//Prints total
 			cout << "Your total is " << playerTotal << endl << endl;
 
-			if(playerTotal > 21){
+			//Breaking loop if player gets 21 (wins) & printing it
+			if(playerTotal > 21) {
 
 				cout << "Player busts! Dealer wins." << endl;
 
@@ -188,10 +193,19 @@ int main() {
 
 			}
 
-			//Asking if player would like to hit or stand
+			//Asking player if they would like to hit or stand
 			cout << "Would you like to \"Hit\" or \"Stand\"?" << endl;
 			cin >> hitOrStand;
 			cout << endl;
+
+			//Using while loop to make sure they've entered hit or stand
+			while(hitOrStand != "hit" && hitOrStand != "Hit" && hitOrStand != "stand" && hitOrStand != "Stand") {
+				
+				cout << "Please only enter \"Hit\" or \"Stand\"." << endl;
+				cin >> hitOrStand;
+				cout << endl;
+
+			}
 
 			//Continuing loop of dealing cards if player wants to hit
 			if(hitOrStand == "Hit" || hitOrStand == "hit") {
@@ -220,7 +234,7 @@ int main() {
 			currentDealerHand.push_back(currentDealerCard);
 			cout << "The Dealer total is " << dealerTotal << endl << endl;
 
-
+			//While player only has two cards, checks if theres an instant blackjack (an ace and a face card)
 			if(currentDealerHand.size() == 2) {
 
 				checkInstantBlackJack(currentDealerHand, dealerTotal);
@@ -236,6 +250,7 @@ int main() {
 
 		}
 
+		//Printing that dealer wins if dealers gets blackjack & player is under 21
 		else if(dealerTotal == 21 && playerTotal < 21) {
 
 			cout << "Dealer wins!" << endl;
@@ -256,20 +271,31 @@ int main() {
 
 		}
 
-		else if(dealerTotal == playerTotal && playerTotal < 21 && dealerTotal < 21){
+		//Printing if its a tie
+		else if(dealerTotal == playerTotal && playerTotal < 21 && dealerTotal < 21) {
 
 			cout << "It's a tie!" << endl;
 
 		}
 
-		//Asking if player would like to play again
+		//Asking player if they would like to hit or stand
 		cout << "Would you like to play again? (\"Yes\" or \"No\")" << endl;
-
 		cin >> continueToPlay;
-
 		cout << endl;
 
+		//Using while loop to make sure they've entered hit or stand
+		while(continueToPlay != "yes" && continueToPlay != "Yes" && continueToPlay != "no" && continueToPlay != "No") {
+		
+			cout << "Please only enter \"Yes\" or \"No\"." << endl;
+			cin >> continueToPlay;
+			cout << endl;
+
+		}
+
 	}
+
+	//Thanking player for playing after they have finished all games
+	cout << "Thanks for playing!" << endl;
 
 	return 0;
 }
