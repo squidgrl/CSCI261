@@ -11,37 +11,27 @@ using namespace std;
 //Function to print card
 void printCard(Card card) {
 
-	if(card.rank == 1 || card.rank == 0) {
+	switch(card.rank) {
 
-		cout << "Ace of " << card.suit;
-
-	}
-
-	else if(card.rank == 11) {
-
-		cout << "Jack of " << card.suit ;
-
-	}
-
-	else if(card.rank == 12) {
-
-		cout << "Queen of " << card.suit;
-
-	}
-
-	else if(card.rank == 13) {
-
-		cout << "King of " << card.suit;
-
-	}
-
-	else {
-
-		cout << card.rank << " of " << card.suit;
+		case 1:
+			cout << "Ace of " << card.suit;
+			break;
+		case 11:
+			cout << "Jack of " << card.suit;
+			break;
+		case 12:
+			cout << "Queen of " << card.suit;
+			break;
+		case 13:
+			cout << "King of " << card.suit;
+			break;
+		default:
+			cout << card.rank << " of " << card.suit;
 
 	}
 
 	return;
+
 }
 
 //Function to shuffle deck
@@ -76,24 +66,21 @@ Card dealNextCard(vector<Card>& deck) {
 //Adds points to total based on card dealt
 void addPoints(Card currentCard, int& total) {
 
-	if(currentCard.rank == 11 || currentCard.rank == 12 || currentCard.rank == 13) {
+	switch(currentCard.rank) {
 
-		total += 10;
-	}
-
-	else if (currentCard.rank == 1){
-		
-		total += 11;
-
-	}
-
-	else {
-
-		total += currentCard.rank;
+		case 1:
+			total += 11;
+			break;
+		case 11:
+		case 12:
+		case 13:
+			total += 10;
+			break;
+		default:
+			total += currentCard.rank;
 
 	}
 
-	return;
 }
 
 //Function to change points of Ace from 11 to 1
