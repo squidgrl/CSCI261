@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <algorithm>
 #include "WordStruct.h"
 using namespace std;
 
@@ -74,7 +75,15 @@ void removePunctuation(string& currentWord) {
 
 }
 
-void alphebatize(vector<WordCount>& words) {
+bool compareAlphabet(const WordCount& a, const WordCount& b) {
+
+    return a.word < b.word;
+
+}
+
+void alphabetize(vector<WordCount>& words) {
+
+	sort(words.begin(), words.end(), compareAlphabet);
 
 	return;
 
@@ -90,6 +99,90 @@ void printWordCount(vector<WordCount>& words) {
 		cout << left << setw(8) << words.at(i).word;
 		cout << right << setw(2) << ":";
 		cout << right << setw(3) << words.at(i).count << endl;
+
+	}
+
+	return;
+
+}
+
+void findMostFreq(const vector<WordCount>& words, vector<WordCount>& mostFreq) {
+
+	WordCount maxCount = words.at(0);
+
+	for(int i = 0; i < words.size(); ++i) {
+
+		if(words.at(i).count > maxCount.count) {
+
+			maxCount = words.at(i);
+
+		}
+
+	}
+
+	for(int i = 0; i < words.size(); ++i) {
+
+		if(words.at(i).count == maxCount.count) {
+
+			mostFreq.push_back(words.at(i));
+
+		}
+
+	}
+
+	return;
+
+}
+
+void findLeastFreq(const vector<WordCount>& words, vector<WordCount>& leastFreq) {
+
+	WordCount minCount = words.at(0);
+
+	for(int i = 0; i < words.size(); ++i) {
+
+		if(words.at(i).count < minCount.count) {
+
+			minCount = words.at(i);
+
+		}
+
+	}
+
+	for(int i = 0; i < words.size(); ++i) {
+
+	if(words.at(i).count == minCount.count) {
+
+		leastFreq.push_back(words.at(i));
+
+	}
+
+}
+
+	return;
+
+}
+
+void printMostFreq(const vector<WordCount>& mostFreq) {
+
+	cout << "The most frequent word(s): ";
+
+	for(int i = 0; i < mostFreq.size(); ++i) {
+
+		cout << mostFreq.at(i).word << " with " << mostFreq.at(i).count << " occurance(s). ";
+
+	}
+
+	return;
+
+}
+
+void printLeastFreq(const vector<WordCount>& leastFreq) {
+
+	cout << "The least frequent word(s): ";
+
+	for(int i = 0; i < leastFreq.size(); ++i) {
+
+		cout << leastFreq.at(i).word << " with " << leastFreq.at(i).count << " occurance(s). ";
 
 	}
 

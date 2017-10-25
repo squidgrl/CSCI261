@@ -27,6 +27,8 @@ int main() {
 
 	string currentWord;
 	vector<WordCount> words;
+	vector<WordCount> mostFreq;
+	vector<WordCount> leastFreq;
 
 	while(!fromFile.eof()) {
 
@@ -56,9 +58,21 @@ int main() {
 
 	}*/
 
-	//alphabetize(words);
+	alphabetize(words);
 
 	printWordCount(words);
+
+	findMostFreq(words, mostFreq);
+
+	findLeastFreq(words, leastFreq);
+
+	printMostFreq(mostFreq);
+
+	cout << endl;
+
+	printLeastFreq(leastFreq);
+
+	cout << endl;
 
 	return 0;
 

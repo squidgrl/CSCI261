@@ -11,27 +11,40 @@ using namespace std;
 
 int main() {
 
+	//Opening an in stream to read from the secretMessage.txt file
 	ifstream fromFile;
 	fromFile.open("secretMessage.txt");
 
+	//Checking to make sure in stream file is open & erroring if not
 	if(!fromFile.is_open()) {
 
-		cout << "Could not open secretMessage.txt" << endl;
+		cerr << "Could not open secretMessage.txt" << endl;
+
+		return -1;
 
 	}
 
+	//Opening an out stream to read into the decipheredMessage.txt file
 	ofstream toFile;
 	toFile.open("decipheredMessage.txt");
 
+	//Checking to make sure out stream file is open & erroring if not
 	if(!toFile.is_open()) {
 
-		cout << "Could not open decipheredMessage.txt" << endl;
+		cerr << "Could not open decipheredMessage.txt" << endl;
+
+		return -1;
 
 	}
 
+	//Declaring currentChar & inputChar
 	char currentChar;
 	char inputChar;
 
+	//Clearing anything that might already be in the out stream file so that just the deciphered message in it
+	toFile.clear();
+
+	//A while loop to read from the file while there is still stuff to read
 	while(!fromFile.eof()) {
 
 		currentChar = fromFile.get();

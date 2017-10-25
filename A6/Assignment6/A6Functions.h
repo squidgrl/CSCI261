@@ -18,6 +18,18 @@ void addToWords(string currentWord, vector<WordCount>& words);
 
 void removePunctuation(string& currentWord);
 
-void alphebatize(vector<WordCount>& words);
+bool compareAlphabet(const WordCount& a, const WordCount& b);
+
+void alphabetize(vector<WordCount>& words);
+
+void printWordCount(vector<WordCount>& words);
+
+void findMostFreq(const vector<WordCount>& words);
+
+void findLeastFreq(const vector<WordCount>& words);
+
+void printMostFreq(const vector<WordCount>& mostFreq);
+
+void printLeastFreq(const vector<WordCount>& leastFreq);
 
 #endif
