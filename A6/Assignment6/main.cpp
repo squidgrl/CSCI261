@@ -14,6 +14,9 @@
 #include "A6Functions.h"
 using namespace std;
 
+/*#include <SFML/Graphics.hpp>
+using namespace std;*/
+
 int main() {
 
 	ifstream fromFile;
@@ -73,6 +76,10 @@ int main() {
 	printLeastFreq(leastFreq);
 
 	cout << endl;
+
+	/*RenderWindow window( VideoMode( 640, 480 ), "SFML Window" );
+	
+	window.display();*/
 
 	return 0;
 
