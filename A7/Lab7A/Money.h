@@ -12,7 +12,7 @@ class Money {
 
 	public:
 		Money();
-		Money(int setDolalrs, int setCents);
+		Money(int d, int c);
 		int dollars;
 		int cents;
 

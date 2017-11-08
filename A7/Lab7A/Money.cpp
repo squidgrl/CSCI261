@@ -15,10 +15,10 @@ Money::Money() {
 
 }
 
-Money::Money(int setDollars, int setCents) {
+Money::Money(int d, int c) {
 
-	dollars = setDollars;
+	dollars = d;
 
-	cents = setCents;
+	cents = c;
 
 }
