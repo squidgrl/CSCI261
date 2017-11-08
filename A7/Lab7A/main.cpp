@@ -9,7 +9,6 @@
  */
 
 #include "Money.h"
-
 #include <iostream>
 using namespace std;
 

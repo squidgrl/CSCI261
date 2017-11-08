@@ -11,9 +11,9 @@
 class Money {
 
 	public:
+		Money();
+		Money(int setDolalrs, int setCents);
 		int dollars;
 		int cents;
-		Money();
-		Money(int, int);
 
 };
