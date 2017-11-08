@@ -61,7 +61,11 @@ int main() {
 
 	}*/
 
-	alphabetize(words);
+	const int SIZE = words.size();
+
+	alphabetize(words, SIZE, 0);
+
+	//alphabetize(words, SIZE);
 
 	printWordCount(words);
 

@@ -18,9 +18,9 @@ void addToWords(string currentWord, vector<WordCount>& words);
 
 void removePunctuation(string& currentWord);
 
-bool compareAlphabet(const WordCount& a, const WordCount& b);
+void alphabetize(vector<WordCount>& words, int SIZE, int pos);
 
-void alphabetize(vector<WordCount>& words);
+//void alphabetize(vector<WordCount>& words, const int SIZE);
 
 void printWordCount(vector<WordCount>& words);
 

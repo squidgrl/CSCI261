@@ -14,7 +14,7 @@ bool isAlreadyIncluded(string currentWord, vector<WordCount> words) {
 
 	bool found = false;
 
-	for(int i = 0; i < words.size(); ++i) {
+	for(unsigned int i = 0; i < words.size(); ++i) {
 
 		if(currentWord == words.at(i).word) {
 			found = true;
@@ -31,7 +31,7 @@ void addToCount(string currentWord, vector<WordCount>& words) {
 
 	int wordIndex = 0;
 
-	for(int i = 0; i < words.size(); ++i) {
+	for(unsigned int i = 0; i < words.size(); ++i) {
 
 		if(currentWord == words.at(i).word) {
 
@@ -59,7 +59,7 @@ void addToWords(string currentWord, vector<WordCount>& words) {
 
 void removePunctuation(string& currentWord) {
 
-	for(int i = 0; i < currentWord.length(); ++i) {
+	for(unsigned int i = 0; i < currentWord.length(); ++i) {
 
 		if( ispunct(currentWord.at(i)) ) {
 
@@ -75,7 +75,7 @@ void removePunctuation(string& currentWord) {
 
 }
 
-bool compareAlphabet(const WordCount& a, const WordCount& b) {
+/*bool compareAlphabet(const WordCount& a, const WordCount& b) {
 
     return a.word < b.word;
 
@@ -87,11 +87,89 @@ void alphabetize(vector<WordCount>& words) {
 
 	return;
 
+}*/
+
+void alphabetize(vector<WordCount>& words, int SIZE, int pos) {
+
+	if(pos == (SIZE - 2)) {
+
+		if(words.at(pos).word > words.at(pos+1).word) {
+
+			WordCount swapWord = words.at(pos);
+
+			words.at(pos) = words.at(pos+1);
+
+			words.at(pos+1) = swapWord;
+
+		}
+
+	}
+
+	else {
+
+		WordCount swapWord = words.at(pos);
+
+		WordCount lowestWord = words.at(pos);
+
+		int index = pos;
+
+		for(int i = pos; i < SIZE; ++i) {
+
+			if(words.at(i).word < lowestWord.word) {
+
+				lowestWord = words.at(i);
+
+				index = i;
+
+			}
+
+		}
+
+		words.at(pos) = lowestWord;
+
+		words.at(index) = swapWord;
+
+		alphabetize(words, SIZE, (pos+1) );
+
+	}
+
+	return;
+
 }
+
+/*void alphabetize(vector<WordCount>& words, const int SIZE) {
+	
+	for(int i = 0; i < SIZE; ++i) {
+		
+		WordCount lowestWord = words.at(i);
+		
+		WordCount swapWord = words.at(i);
+		
+		int index = i;
+		
+		for(int j = i; j < SIZE; ++j) {
+			
+			if(words.at(j).word < lowestWord.word) {
+				
+				lowestWord = words.at(j);
+				
+				index = j;
+				
+			}
+			
+		}
+		
+		words.at(index) = swapWord;
+		
+		words.at(i) = lowestWord;
+		
+	}
+	
+}*/
 
 void printWordCount(vector<WordCount>& words) {
 
-	for(int i = 0; i < words.size(); ++i) {
+	for(unsigned int i = 0; i < words.size(); ++i) {
 
 		cout << "#";
 		cout << right << setw(3) << (i+1);
@@ -110,7 +188,7 @@ void findMostFreq(const vector<WordCount>& words, vector<WordCount>& mostFreq) {
 
 	WordCount maxCount = words.at(0);
 
-	for(int i = 0; i < words.size(); ++i) {
+	for(unsigned int i = 0; i < words.size(); ++i) {
 
 		if(words.at(i).count > maxCount.count) {
 
@@ -120,7 +198,7 @@ void findMostFreq(const vector<WordCount>& words, vector<WordCount>& mostFreq) {
 
 	}
 
-	for(int i = 0; i < words.size(); ++i) {
+	for(unsigned int i = 0; i < words.size(); ++i) {
 
 		if(words.at(i).count == maxCount.count) {
 
@@ -138,7 +216,7 @@ void findLeastFreq(const vector<WordCount>& words, vector<WordCount>& leastFreq)
 
 	WordCount minCount = words.at(0);
 
-	for(int i = 0; i < words.size(); ++i) {
+	for(unsigned int i = 0; i < words.size(); ++i) {
 
 		if(words.at(i).count < minCount.count) {
 
@@ -148,7 +226,7 @@ void findLeastFreq(const vector<WordCount>& words, vector<WordCount>& leastFreq)
 
 	}
 
-	for(int i = 0; i < words.size(); ++i) {
+	for(unsigned int i = 0; i < words.size(); ++i) {
 
 	if(words.at(i).count == minCount.count) {
 
@@ -166,7 +244,7 @@ void printMostFreq(const vector<WordCount>& mostFreq) {
 
 	cout << "The most frequent word(s): ";
 
-	for(int i = 0; i < mostFreq.size(); ++i) {
+	for(unsigned int i = 0; i < mostFreq.size(); ++i) {
 
 		cout << mostFreq.at(i).word << " with " << mostFreq.at(i).count << " occurance(s). ";
 
@@ -180,7 +258,7 @@ void printLeastFreq(const vector<WordCount>& leastFreq) {
 
 	cout << "The least frequent word(s): ";
 
-	for(int i = 0; i < leastFreq.size(); ++i) {
+	for(unsigned int i = 0; i < leastFreq.size(); ++i) {
 
 		cout << leastFreq.at(i).word << " with " << leastFreq.at(i).count << " occurance(s). ";
 
