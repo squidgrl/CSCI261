@@ -18,7 +18,6 @@ Money::Money() {
 Money::Money(int d, int c) {
 
 	dollars = d;
-
 	cents = c;
 
 }

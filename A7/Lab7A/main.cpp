@@ -8,7 +8,7 @@
  * YOU SHOULD NOT MODIFY THIS CODE.
  */
 
-#include "Money.h"
+#include "Money.cpp"
 #include <iostream>
 using namespace std;
 
