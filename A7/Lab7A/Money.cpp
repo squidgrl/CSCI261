@@ -8,6 +8,7 @@
 
 #include "Money.h"
 
+//Default Constructor
 Money::Money() {
 
 	dollars = 999;
@@ -15,6 +16,7 @@ Money::Money() {
 
 }
 
+//Specific Constructor
 Money::Money(int d, int c) {
 
 	dollars = d;
