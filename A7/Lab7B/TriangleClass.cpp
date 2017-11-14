@@ -10,6 +10,7 @@
 #include <cmath>
 using namespace std;
 
+//Default constructor
 Triangle::Triangle() {
 
 	side1 = 1;
@@ -18,42 +19,49 @@ Triangle::Triangle() {
 
 }
 
+//Returns side1
 double Triangle::getSide1() {
 
 	return side1;
 
 }
 
+//Sets argument as side1
 void Triangle::setSide1(double newSide) {
 
 	side1 = newSide;
 
 }
 
+//Returns side2
 double Triangle::getSide2() {
 
 	return side2;
 
 }
 
+//Sets argument as side2
 void Triangle::setSide2(double newSide) {
 
 	side2 = newSide;
 
 }
 
+//Returns side3
 double Triangle::getSide3() {
 
 	return side3;
 
 }
 
+//Sets argument as side3
 void Triangle::setSide3(double newSide) {
 
 	side3 = newSide;
 
 }
 
+//Returns true if sides make up a triangle
 bool Triangle::validate() {
 
 	int howManyTrue = 0;
@@ -80,6 +88,7 @@ bool Triangle::validate() {
 
 }
 
+//Returns area of triangle
 double Triangle::getArea() {
 
 	double s;
@@ -96,6 +105,7 @@ double Triangle::getArea() {
 
 }
 
+//Returns perimeter of triangle
 double Triangle::getPerimeter() {
 
 	double perimeter;
@@ -106,6 +116,7 @@ double Triangle::getPerimeter() {
 
 }
 
+//Returns true if classee's area is larger than argument triangle
 bool Triangle::largerThan(Triangle &otherTriangle) {
 
 	double myArea = getArea();

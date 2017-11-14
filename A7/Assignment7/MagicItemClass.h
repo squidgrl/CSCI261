@@ -5,3 +5,29 @@
  * Author: Krista Dunlap
  *
  */
+
+#pragma once
+
+#include <string>
+using namespace std;
+
+class MagicItem {
+
+public:
+	MagicItem();
+	string getShape();
+	void introduction();
+	void getAction();
+	void clean();
+	void sell();
+	void trash();
+	void genie();
+	void revealPrize();
+
+private:
+	string prize;
+	string shape;
+	string actionChoice;
+	string wishChoice;
+
+};

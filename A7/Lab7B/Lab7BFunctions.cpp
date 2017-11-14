@@ -8,6 +8,7 @@
 #include "TriangleClass.h"
 using namespace std;
 
+//Prints the sides of the triangle
 void printSides(double side1, double side2, double side3) {
 
 	cout << "The sides of this triangle are now " << side1 << ", " << side2 << " and " << side3 << ". ";
@@ -16,6 +17,7 @@ void printSides(double side1, double side2, double side3) {
 
 }
 
+//Prints if the sides make up a triangle or not
 void printIfTriangle(bool valid) {
 
 	if(valid) {
