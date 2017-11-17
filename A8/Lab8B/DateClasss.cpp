@@ -1,4 +1,4 @@
-/* CSCI261 Lab8A: Date Class
+/* CSCI261 Lab8B: Date Class
  *
  * Description: Definition file for Date Class
  *
