@@ -84,6 +84,12 @@ void Date::PrintDate() {
 
 }
 
+string Date::GetDate() {
+
+	return to_string(GetMonth()) + to_string(GetDay()) + to_string(GetYear());
+
+}
+
 //Sets date to parameters
 void Date::SetDate(int setMonth, int setDay, int setYear) {
 

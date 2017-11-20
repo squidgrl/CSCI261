@@ -6,12 +6,16 @@
  */
 
 #include <iostream>
-#include "DateClass.cpp."
+#include "DateClass.cpp"
+#include "EventClass.cpp"
 using namespace std;
 
 int main() {
 
+	Event newEvent;
 
+	newEvent.PrintEvent();
+	cout << endl;
 
 	return 0;
 }
