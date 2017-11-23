@@ -1,6 +1,6 @@
 /* CSCI261 Lab8B: Event Class
  *
- * Description: Definition file for Date Class
+ * Description: Definition file for Event Class
  *
  * Author: Krista Dunlap
  *
@@ -12,17 +12,18 @@ using namespace std;
 
 Event::Event() {
 
-	eventTitle = "Title";
-	eventLocation = "Location";
+	eventTitle = "Bjarne Stroustrup Born";
+	eventLocation = "Aarhus, Denmark";
 	eventDate.SetDate(12,30,1950);
 
 }
 
-Event::Event(int setMonth, int setDay, int setYear, int setTitle, int setLocation) {
+Event::Event(string setTitle, string setLocation, Date newDate) {
 
-	eventDate.SetDate(setMonth,setDay,setYear);
 	eventTitle = setTitle;
 	eventLocation = setLocation;
+	eventDate.SetDate(newDate.GetMonth(),newDate.GetDay(),newDate.GetYear());
+
 
 }
 
@@ -55,9 +56,15 @@ string Event::GetDate() {
 
 	string theDate;
 
-	theDate = to_string(eventDate.GetMonth()) + to_string(eventDate.GetDay()) + to_string(eventDate.GetYear());
+	theDate = to_string(eventDate.GetMonth()) + "/" + to_string(eventDate.GetDay()) + "/" + to_string(eventDate.GetYear());
 
 	return theDate;
+
+}
+
+void Event::SetDate(Date newDate) {
+
+	eventDate.SetDate(newDate.GetMonth(),newDate.GetDay(),newDate.GetYear());
 
 }
 

@@ -17,6 +17,7 @@ Date::Date() {
 	day = 30;
 	year = 1950;
 
+
 }
 
 //Parameterized constructor sets date to parameters
@@ -79,14 +80,8 @@ void Date::SetYear(int setYear) {
 //Prints date in MM/DD/YYYY
 void Date::PrintDate() {
 	
-	cout << GetMonth() << "\\" << GetDay() << "\\" << GetYear();
+	cout << GetMonth() << "/" << GetDay() << "/" << GetYear();
 	return;
-
-}
-
-string Date::GetDate() {
-
-	return to_string(GetMonth()) + to_string(GetDay()) + to_string(GetYear());
 
 }
 

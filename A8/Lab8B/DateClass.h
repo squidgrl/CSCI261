@@ -7,8 +7,6 @@
  */
 
 #pragma once
-#include <string>
-using namespace std;
 
 class Date {
 	
@@ -22,7 +20,6 @@ class Date {
 		int GetYear();
 		void SetYear(int setYear);
 		void PrintDate();
-		string GetDate();
 		void SetDate(int setMonth, int setDay, int setYear);
 		bool EarlierThan(Date compareDate);
 

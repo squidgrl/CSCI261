@@ -17,6 +17,8 @@ Date::Date() {
 	day = 30;
 	year = 1950;
 
+	cout << "On 12/30/1950, Bjarne Stroustrup (the creator of C++) was born!" << endl;
+
 }
 
 //Parameterized constructor sets date to parameters
@@ -25,6 +27,12 @@ Date::Date(int setMonth, int setDay, int setYear) {
 	month = setMonth;
 	day = setDay;
 	year = setYear;
+
+	if(setMonth == 8 && setDay == 1 && setYear == 1876) {
+
+		cout << "On 8/1/1876, Colorado became a state!" << endl;
+
+	}
 
 }
 
@@ -79,7 +87,7 @@ void Date::SetYear(int setYear) {
 //Prints date in MM/DD/YYYY
 void Date::PrintDate() {
 	
-	cout << GetMonth() << "\\" << GetDay() << "\\" << GetYear();
+	cout << GetMonth() << "/" << GetDay() << "/" << GetYear();
 	return;
 
 }

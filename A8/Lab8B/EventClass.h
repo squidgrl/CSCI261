@@ -1,6 +1,6 @@
 /* CSCI261 Lab8B: Event Class
  *
- * Description: Declaration file for Date Class
+ * Description: Declaration file for Event Class
  *
  * Author: Krista Dunlap
  *
@@ -14,13 +14,13 @@ class Event {
 
 	public:
 		Event();
-		Event(int setMonth, int setDay, int setYear, int setTitle, int setLocation);
+		Event(string setTitle, string setLocation, Date newDate);
 		string GetTitle();
 		void SetTitle(string newTitle);
 		string GetLocation();
 		void SetLocation(string newLocation);
 		string GetDate();
-		void SetDate();
+		void SetDate(Date newDate);
 		void PrintEvent();
 
 	private:

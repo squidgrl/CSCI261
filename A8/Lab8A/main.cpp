@@ -19,7 +19,7 @@ int main() {
 
 	//Using GetMonth, GetDay and GetYear functions to print date
 	cout << "The first date is ";
-	cout << first.GetMonth() << "\\" << first.GetDay() << "\\" << first.GetYear() << endl;
+	cout << first.GetMonth() << "/" << first.GetDay() << "/" << first.GetYear() << endl;
 
 	//Using PrintDate function to print date
 	cout << "The second date is ";
