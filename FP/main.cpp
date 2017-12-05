@@ -13,12 +13,16 @@ using namespace std;
 
 int main() {
 
+	srand(time(0));
+
 	int chosenPoke;
 
 	bool userHasWon = false;
 
 	vector<string> pokes;
 	pokes.push_back("Bulbasaur");
+	pokes.push_back("Charmander");
+	pokes.push_back("Squirtle");
 
 	cout << "Welcome to Pokemon Battle Simulator!" << endl;
 	cout << "Please choose a Pokemon (Enter the number)." << endl;
@@ -70,8 +74,6 @@ int main() {
 	cout << endl;
 
 	if(chooseOrRand == 'n') {
-		
-		srand(time(0));
 
 		chosenPoke = rand() % pokes.size();
 
@@ -105,7 +107,7 @@ int main() {
 
 		}
 
-		cout << endl << "You have chosen " << pokes.at(chosenPoke) << "!" << endl;
+		cout << endl << "Opponent has chosen " << pokes.at(chosenPoke) << "!" << endl;
 
 	}
 
@@ -159,8 +161,10 @@ int main() {
 					compPokemon.dealDamage(compPokemon.getMove2(), userPokemon);
 					break;
 				case 3:
+					compPokemon.dealDamage(compPokemon.getMove3(), userPokemon);
 					break;
 				case 4:
+					compPokemon.dealDamage(compPokemon.getMove4(), userPokemon);
 					break;
 				default:
 					break;
@@ -178,8 +182,10 @@ int main() {
 					userPokemon.dealDamage(userPokemon.getMove2(), compPokemon);
 					break;
 				case 3:
+					userPokemon.dealDamage(userPokemon.getMove3(), compPokemon);
 					break;
 				case 4:
+					userPokemon.dealDamage(userPokemon.getMove4(), compPokemon);
 					break;
 				default:
 					break;
@@ -202,8 +208,10 @@ int main() {
 					userPokemon.dealDamage(userPokemon.getMove2(), compPokemon);
 					break;
 				case 3:
+					userPokemon.dealDamage(userPokemon.getMove3(), compPokemon);
 					break;
 				case 4:
+					userPokemon.dealDamage(userPokemon.getMove4(), compPokemon);
 					break;
 				default:
 					break;
@@ -223,8 +231,10 @@ int main() {
 					compPokemon.dealDamage(compPokemon.getMove2(), userPokemon);
 					break;
 				case 3:
+					compPokemon.dealDamage(compPokemon.getMove3(), userPokemon);
 					break;
 				case 4:
+					compPokemon.dealDamage(compPokemon.getMove4(), userPokemon);
 					break;
 				default:
 					break;
@@ -236,6 +246,9 @@ int main() {
 
 		}
 
+		compPokemon.statusEffect();
+		userPokemon.statusEffect();
+
 	}
 
 	if(userHasWon) {
@@ -243,7 +256,7 @@ int main() {
 	}
 
 	else {
-		cout << compPokemon.getName() << " has fainted." << endl << "You blacked out..." << endl;
+		cout << userPokemon.getName() << " has fainted." << endl << "You blacked out..." << endl;
 	}
 
 	return 0;

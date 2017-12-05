@@ -8,6 +8,7 @@
 
 #include "PokemonClass.h"
 #include "types.h"
+#include "status.h"
 
 Pokemon::Pokemon() {
 
@@ -24,7 +25,6 @@ Pokemon::Pokemon() {
 	accuracy = 1.0;
 	evasiveness = 1.0;
 	status = 0;
-
 
 }
 
@@ -73,6 +73,14 @@ Pokemon::Pokemon(string name) {
 	getline(readFile,temp);
 	DamageMove tempMove2(temp);
 	move2 = tempMove2;
+
+	getline(readFile,temp);
+	DamageMove tempMove3(temp);
+	move3 = tempMove3;
+
+	getline(readFile,temp);
+	DamageMove tempMove4(temp);
+	move4 = tempMove4;
 
 	this->name = name;
 	currHP = maxHP;
@@ -126,36 +134,15 @@ int Pokemon::getSpeed() {
 
 }
 
-void Pokemon::setSpeed(int newSpeed) {
-
-	speed = newSpeed;
-	return;
-
-}
-
 int Pokemon::getAttack() {
 
 	return attack;
 
 }
 
-void Pokemon::setAttack(int newAttack) {
-
-	attack = newAttack;
-	return;
-
-}
-
 int Pokemon::getDefense() {
 
 	return defense;
-
-}
-
-void Pokemon::setDefense(int newDefense) {
-
-	defense = newDefense;
-	return;
 
 }
 
@@ -191,22 +178,15 @@ double Pokemon::getAccuracy() {
 
 }
 
-void Pokemon::setAccuracy(double newAccuracy) {
-
-	accuracy = newAccuracy;
-	return;
-
-}
-
 double Pokemon::getEvasiveness() {
 
 	return evasiveness;
 
 }
 
-void Pokemon::setEvasiveness(double newEvasiveness) {
+void Pokemon::setStatus(int newStatus) {
 
-	evasiveness = newEvasiveness;
+	status = newStatus;
 	return;
 
 }
@@ -223,13 +203,6 @@ bool Pokemon::isDead() {
 
 }
 
-void Pokemon::setStatus(int newStatus) {
-
-	status = newStatus;
-	return;
-
-}
-
 DamageMove Pokemon::getMove1() {
 
 	return move1;
@@ -242,9 +215,22 @@ DamageMove Pokemon::getMove2() {
 
 }
 
+DamageMove Pokemon::getMove3() {
+
+	return move3;
+
+}
+
+DamageMove Pokemon::getMove4() {
+
+	return move4;
+
+}
+
 void Pokemon::printPokemon() {
 
 	cout << "Name: " << getName() << endl;
+	cout << "Level: " << getLevel() << endl;
 	cout << "Type1: " << types[getType1()] << endl;
 	cout << "Type2: " << types[getType2()] << endl;
 	cout << "MaxHP: " << getMaxHP() << endl;
@@ -256,11 +242,12 @@ void Pokemon::printPokemon() {
 	cout << "SpecialDefense: " << getSpecialDefense() << endl;
 	cout << "Accuracy: " << (getAccuracy()*100) << "%" << endl;
 	cout << "Evasiveness: " << (getEvasiveness()*100) << "%" << endl;
-	cout << "Status: " << getStatus() << endl;
 
 	cout << endl << "The moves for this Pokemon are " << endl;
 	cout << move1.getName() << endl;
 	cout << move2.getName() << endl;
+	cout << move3.getName() << endl;
+	cout << move4.getName() << endl;
 
 	return;
 
@@ -276,6 +263,14 @@ void Pokemon::printMoves() {
 	move2.printMove();
 	cout << endl;
 
+	cout << "Move 3" << endl;
+	move3.printMove();
+	cout << endl;
+
+	cout << "Move 4" << endl;
+	move4.printMove();
+	cout << endl;
+
 	return;
 
 }
@@ -289,14 +284,22 @@ void Pokemon::dealDamage(DamageMove move, Pokemon& opponent) {
 	double chance = (move.getAccuracy() * accuracy)/(opponent.getEvasiveness());
 
 	if(effectiveness > chance) {
-
-		cout << "...but it missed!" << endl;
-
+		cout << "...but it missed!" << endl << endl;
 		return;
-
 	}
 
 	double modifier = 1.0;
+
+	modifier *= chart[move.getType()][opponent.getType1()];
+	modifier *= chart[move.getType()][opponent.getType2()];
+
+	if(modifier < 1.0) {
+		cout << "It wasn't very effective..." << endl;
+	}
+
+	else if(modifier > 1.0) {
+		cout << "It was super effective!" << endl;
+	}
 
 	if(type1 == move.getType() || type2 == move.getType()) {
 		modifier *= 1.5;
@@ -306,24 +309,24 @@ void Pokemon::dealDamage(DamageMove move, Pokemon& opponent) {
 	double dRandom = static_cast<double> (iRandom) / 100.0;
 	modifier *= dRandom;
 
-	modifier *= chart[move.getType()][opponent.getType1()];
-	modifier *= chart[move.getType()][opponent.getType2()];
-
-
-	double levelCalc = ((2.0*level)/5)+2;
+	double levelCalc = ((2.0*level)/5.0)+2.0;
 
 	double dDamage = levelCalc*(move.getPower()/50.0);
 
+	if(move.getName() == "Venoshock" && opponent.getStatus() == PSN) {
+		dDamage *= 2.0;
+	}
+
+	else if(move.getName() == "Brine" && opponent.getCurrHP() < (opponent.getMaxHP()/2)) {
+		dDamage *= 2.0;
+	}
+
 	if(!move.getIsSpecial()) {
-
-		dDamage *= attack/opponent.getDefense();
-
+		dDamage *= static_cast<double>(attack)/opponent.getDefense();
 	}
 
 	else {
-
-		dDamage *= specialAttack/opponent.getSpecialDefense();
-
+		dDamage *= static_cast<double>(specialAttack)/opponent.getSpecialDefense();
 	}
 
 	dDamage += 2.0;
@@ -335,55 +338,58 @@ void Pokemon::dealDamage(DamageMove move, Pokemon& opponent) {
 
 	opponent.setCurrHP(opponent.getCurrHP() - iDamage);
 
+	if(move.getName() == "Sludge Bomb" && opponent.getType1() != POISON && opponent.getType2() != POISON && opponent.getStatus() == NON) {
+		int random = rand() % 101;
+		if(random <= 30) {
+			opponent.setStatus(PSN);
+			cout << opponent.getName() << " was poisoned..." << endl;
+		}
+	}
+
+	if(move.getName() == "Inferno" && opponent.getType1() != FIRE && opponent.getType2() != FIRE && opponent.getStatus() == NON) {
+		opponent.setStatus(BRN);
+		cout << opponent.getName() << " was burned..." << endl;
+	}
+
+	if((move.getName() == "Fire Fang" || move.getName() == "Heat Wave") && opponent.getType1() != FIRE && opponent.getType2() != FIRE && opponent.getStatus() == NON) {
+		int random = rand() % 101;
+		if(random <= 10) {
+			opponent.setStatus(BRN);
+			cout << opponent.getName() << " was burned..." << endl;
+		}
+	}
+
+	if((move.getName() == "Scald") && opponent.getType1() != FIRE && opponent.getType2() != FIRE && opponent.getStatus() == NON) {
+		int random = rand() % 101;
+		if(random <= 30) {
+			opponent.setStatus(BRN);
+			cout << opponent.getName() << " was burned..." << endl;
+		}
+	}
+
 	cout << endl;
 
 	return;
 
 }
 
-/*void Pokemon::useStatMove(StatusMove move, Pokemon& opponent) {
+void Pokemon::statusEffect() {
 
-	cout << name << " used " << move.getName() << endl;
-
-	int intRand = rand() % 101;
-	double effectiveness = intRand / 100.0;
-	double chance = (move.getAccuracy() * accuracy)/(opponent.getEvasiveness());
-
-	if(effectiveness > chance) {
-
-		cout << "...but it missed!" << endl;
-
-		return;
-
+	if(status == BRN) {
+		attack /= 2;
+		cout << name << " was hurt by its burn." << endl;
+		currHP -= maxHP/16;
 	}
 
-	if(move.getStatus() > -1) {
-
-		opponent.setStatus(move.getStatus());
-
+	else if(status == PSN) {
+		cout << name << " was hurt by poison." << endl;
+		currHP -= maxHP/8;
 	}
 
-	if(move.getStat() > -1) {
+}
 
-		switch(move.getStat()) {
-			case 0:
-				break;
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4:
-				break;
-			case 5:
-				break;
-			case 6:
-				break;
-			default:
-				break;
-		}
+int Pokemon::getLevel() {
 
-	}
+	return level;
 
-}*/
+}

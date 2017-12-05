@@ -24,30 +24,26 @@ class Pokemon {
 		int getCurrHP();
 		void setCurrHP(int newCurrHP);
 		int getSpeed();
-		//void setSpeed(int newSpeed);
 		int getAttack();
-		//void setAttack(int newAttack);
 		int getDefense();
-		//void setDefense(int newDefense);
 		int getSpecialAttack();
 		void setSpecialAttack(int newSpecialAttack);
 		int getSpecialDefense();
 		void setSpecialDefense(int newSpecialDefense);
 		double getAccuracy();
-		//void setAccuracy(double newAccuracy);
 		double getEvasiveness();
-		//void setEvasiveness(double newEvasiveness);
-		//int getStatus();
-		//void setStatus(int newStatus);
+		void setStatus(int newStatus);
+		int getStatus();
 		bool isDead();
 		DamageMove getMove1();
 		DamageMove getMove2();
-		//DamageMove getMove3();
-		//DamageMove getMove4();
+		DamageMove getMove3();
+		DamageMove getMove4();
 		void printPokemon();
 		void printMoves();
 		void dealDamage(DamageMove move, Pokemon& opponent);
-		void useStatMove(StatusMove move, Pokemon& opponent);
+		void statusEffect();
+		int getLevel();
 
 	private:
 		string name;
@@ -62,9 +58,11 @@ class Pokemon {
 		int specialDefense;
 		double accuracy;
 		double evasiveness;
-		//int status;
+		int status;
 		DamageMove move1;
 		DamageMove move2;
+		DamageMove move3;
+		DamageMove move4;
 		static const int level = 100;
 
 
