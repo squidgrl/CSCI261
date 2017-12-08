@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include "PokemonClass.cpp"
+#include "PokemonClass.h"
 using namespace std;
 
 int main() {
