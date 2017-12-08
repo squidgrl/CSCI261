@@ -1,0 +1,7 @@
+First Name: Krista
+Last Name: Dunlap
+Gender: F
+Age: 22
+Height: 5.2 feet
+Likes Monster Movies: No
+Likes Cantaloupe: Yes
